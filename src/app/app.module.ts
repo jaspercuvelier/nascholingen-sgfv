@@ -39,7 +39,7 @@ import {APP_BASE_HREF} from '@angular/common';
 
 
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/login'}],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'}],
   declarations: [ AppComponent  ],
   bootstrap:    [ AppComponent  ]
 })
