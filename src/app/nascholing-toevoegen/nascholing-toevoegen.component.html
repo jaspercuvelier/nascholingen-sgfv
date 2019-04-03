@@ -1,0 +1,110 @@
+<mat-card *ngIf="!nascholer">
+  Je moet nascholer zijn om deze pagina te bekijken.
+</mat-card>  
+
+<div *ngIf="nascholer" class="container">
+<mat-card *ngIf="!submitted">
+<form #newNascholingsForm="ngForm" (ngSubmit)="addNewNascholing(); newNascholingsForm.reset();">
+<mat-card-content>
+    <div class="mat-title">Nascholing Toevoegen</div>
+
+    <section class="section">
+      <mat-form-field appearance="outline"class="fullwidth">
+        <mat-label class="fullwidth">Titel van de nascholing</mat-label>
+        <input [(ngModel)]="formModel.title" class="fullwidth" name="title"  matInput placeholder="Titel van de nascholing" value="" required>
+      </mat-form-field>
+    </section>
+
+    <div class="mat-title">Beschrijving</div>
+
+    <section class="section">
+
+
+
+      <mat-form-field class="fullwidth">
+      
+        <textarea  [(ngModel)]="formModel.text"  class="fullwidth" name="text" matInput placeholder="Geef een bondige omschrijving" required></textarea>
+      </mat-form-field>
+    </section>
+
+<div class="mat-title">Tijdstip</div>
+
+    <section class="section">
+
+
+
+      <mat-form-field class="fullwidth">
+      
+        <input type="datetime-local" [(ngModel)]="formModel.date"  class="fullwidth" name="date" matInput placeholder="" required>
+      </mat-form-field>
+    </section>
+<div class="mat-title">Locatie</div>
+
+    <section class="section">
+
+
+
+      <mat-form-field class="fullwidth">
+      
+        <input type="text" [(ngModel)]="formModel.location"  class="fullwidth" name="location" matInput placeholder="Locatie" required>
+      </mat-form-field>
+    </section>
+
+    <div class="mat-title">Leerkracht</div>
+
+    <section class="section">
+
+
+
+      <mat-form-field class="fullwidth">
+      
+        <input type="text" [(ngModel)]="formModel.teacher"  class="fullwidth" name="teacher" matInput placeholder="Locatie" required>
+      </mat-form-field>
+    </section>
+ <!-- <h3 class="h2">Gekozen Tags</h3>
+<section class="section">
+
+<div class="button-row" >
+<a *ngFor="let tag of selectedTags" mat-stroked-button color="primary" (click)="selectTag(tag)" >{{tag}}</a>
+</div>
+</section> -->
+
+<h3 class="h2">Kies een aantal TAGS</h3>
+    <section class="section">
+  <div class="button-row" >
+    <div *ngFor="let tag of tags"   >
+       <div *ngIf="selectedTags.indexOf(tag.name)>-1; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock> <a mat-stroked-button color="primary"  (click)="selectTag(tag.name)">{{  tag.name }}</a> </ng-template>
+    <ng-template #elseBlock> <a mat-stroked-button color="warn"  (click)="selectTag(tag.name)">{{ tag.name}}</a> </ng-template>
+<!--     <a mat-raised-button (click)="selectTag(tag.name)" >{{tag.name}}</a> -->
+    </div>
+  </div>
+   
+  </section>
+<section class="section">
+  
+    <form class="addtagform" #newTagForm="ngForm" (ngSubmit)="addNewTag(); newTagForm.reset();">
+
+      <mat-form-field class="right">
+        <mat-label>Nieuwe TAG toevoegen</mat-label>
+        <input  [(ngModel)]="tagModel.tagName" name="tag" matInput   placeholder="Nieuwe TAG toevoegen" value="" required>
+        <button type="submit" mat-mini-fab matSuffix color="warn"><mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
+      </mat-form-field>
+     
+    </form>
+  </section>
+
+
+ 
+</mat-card-content>
+
+<mat-card-actions>
+   <button type="submit" mat-raised-button color="warn">TOEVOEGEN</button>
+</mat-card-actions>
+</form>
+</mat-card>
+
+<mat-card *ngIf="submitted">
+  <h1>Nascholing toegevoegd!</h1>
+</mat-card>
+</div>

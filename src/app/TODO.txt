@@ -1,0 +1,19 @@
+Cloudfunctions:
+On user create ==> toevoegen aan DB met obj: UID {
+                                                   lesgever:false,
+                                                   naam: displayName,
+                                                   uid: uid }
+
+
+On DB change => als users/uid gewijszigd wordt: zet lesgever claim zoals in db.
+Als custom cliam = lesgever => formulier "nascholing toevoegen" tonen.
+
+on DB change => zet tags in db/nascholingen/tags 
+
+On DB change in users-inschrijvingen => 
+  Neem nascholingsID en ga alle "userinschrijvingen" af. 
+      
+      Is de nascholingsID true? => tellertje in db nascholingen > nascholingsid > numberParticipants ++ && db nascholingen > nascholingsid => participants {uid:{displayName:jasper}}
+
+
+Overzicht voor lesgevers van de ingeschreven mensen.       

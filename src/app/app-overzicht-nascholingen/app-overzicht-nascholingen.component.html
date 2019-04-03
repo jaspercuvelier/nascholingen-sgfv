@@ -1,0 +1,60 @@
+<div class="container">
+
+<mat-card ><h1>FILTERS </h1>
+  <div class="button-row" >  
+    <div *ngFor="let filterTag of filterableTags | async">
+    <div *ngIf="toggleTags.indexOf(filterTag.name)>-1; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock> <a mat-flat-button color="primary"  (click)="toggleTag(filterTag.name)">{{ filterTag.name }}</a> </ng-template>
+    <ng-template #elseBlock> <a mat-stroked-button color="warn"  (click)="toggleTag(filterTag.name)">{{ filterTag.name }}</a> </ng-template>
+    </div>
+  </div>
+
+<table mat-table  [dataSource]="items"  class="mat-elevation-z8">
+
+  <!-- NAAM Column -->
+  <ng-container matColumnDef="titel">
+    <th mat-header-cell *matHeaderCellDef> TITEL </th>
+    <td mat-cell *matCellDef="let nascholing">
+      <div class="tdcontainer"> 
+        <div class="tdtitle mat-display-1">{{nascholing.payload.doc.data().titel}} </div> 
+        <div class="tdtext mat-body-1">{{nascholing.payload.doc.data().text}} </div> 
+        <div class="tdtime mat-caption" ><mat-icon aria-hidden="false" aria-label="">query_builder</mat-icon>{{nascholing.payload.doc.data().date}}</div> 
+        <div class="tdlocation mat-caption"><mat-icon aria-hidden="false" aria-label="">room</mat-icon>{{nascholing.payload.doc.data().location}}</div>
+        <div class="tdtagcontainer tagcontainer" ><div class="spacer"></div> <div class="tag" *ngFor="let tag of (nascholing.payload.doc.data().tags | keyvalue)" (click)="toggleTag(tag.key)">{{tag.key}} </div></div>
+        
+      </div>
+      
+    </td>
+  </ng-container>
+
+  <!-- TAGS Column 
+  <ng-container matColumnDef="tags">
+    <th mat-header-cell *matHeaderCellDef> TAGS </th>
+    <td mat-cell *matCellDef="let nascholing"> <div class="tagcontainer" ><div class="tag" *ngFor="let tag of (nascholing.tags | keyvalue)" (click)="toggleTag(tag.key)">{{tag.key}} </div></div></td>
+  </ng-container> -->
+
+
+  <!-- INSCHRIJF Column -->
+  <ng-container matColumnDef="inschrijven">
+    <th mat-header-cell *matHeaderCellDef> INSCHRIJVEN </th>
+    <td mat-cell *matCellDef="let nascholing">
+
+      <button *ngIf="inschrijvingen.indexOf(uid+'-'+nascholing.payload.doc.id) == -1" mat-stroked-button color="primary" (click)="inschrijven(nascholing.payload.doc.id)"> INSCHRIJVEN </button>
+      
+      <button *ngIf="inschrijvingen.indexOf(uid+'-'+nascholing.payload.doc.id) > -1" mat-raised-button color="warn" (click)="uitschrijven(nascholing.payload.doc.id)"> UITSCHRIJVEN </button>
+      <div class="mat-caption" *ngIf="nascholer">Aantal deelnemers: {{nascholing.payload.doc.data().numberParticipants}}
+        <ul *ngFor="let email of nascholing.payload.doc.data().emailList">
+        <li>{{email}}</li>
+        </ul>
+      </div>
+      </td>
+  </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+</table>
+</mat-card>
+</div>

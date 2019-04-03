@@ -1,0 +1,38 @@
+<div style="height: 88vh;">
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>NASCHOLINGEN SGFV.BE</span>
+      <span class="menu-spacer"></span>
+      <div fxShow="true" fxHide.lt-md>
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        
+       
+        <a routerLink="overzicht" *ngIf="uid" mat-button>Overzicht</a>
+        <a routerLink="usermanagement" *ngIf="admin" mat-button>Usermanagement</a>
+        <a routerLink="nascholingtoevoegen" *ngIf="nascholer" mat-button >Nascholing Toevoegen</a>
+        <a routerLink="login" mat-button *ngIf="!uid">Login</a>
+         <a routerLink="login" (click)="logout()" mat-button *ngIf="uid">Logout</a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+        
+      
+        <a routerLink="overzicht" (click)="sidenav.toggle()" mat-list-item *ngIf="uid">Overzicht</a>
+        <a routerLink="usermanagement" (click)="sidenav.toggle()" mat-list-item *ngIf="admin">Usermanagement</a>
+        <a routerLink="nascholingtoevoegen" (click)="sidenav.toggle()" mat-list-item *ngIf="nascholer">Nascholing Toevoegen</a>
+          <a routerLink="login" (click)="sidenav.toggle();"  mat-list-item *ngIf="!uid">Login</a>
+        <a routerLink="login"  (click)="sidenav.toggle();logout();" mat-list-item *ngIf="uid">Logout</a>
+
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill><router-outlet></router-outlet></mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

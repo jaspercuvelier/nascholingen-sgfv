@@ -1,0 +1,20 @@
+.container {
+margin-top: 50px;
+}
+mat-card{
+  width:300px;;
+  margin:0 auto;
+  }
+mat-card-actions {
+  justify-content:center;
+}  
+.center{
+  
+  display: flex;
+  width:100%;
+  justify-content: center;
+  align-items: center;
+}
+.full-width{
+  width:100%;
+}

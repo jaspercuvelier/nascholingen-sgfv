@@ -1,0 +1,55 @@
+<div class="container" [hidden]="submitted">
+  <mat-card>
+  <mat-card-content>
+
+
+  <form class="my-form" #registerForm="ngForm" (ngSubmit)="onSubmit()">
+   
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input pattern="[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+" matInput placeholder="email@adres.com" id="email" required [(ngModel)]="model.email" name="email">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint>Vul een e-mailadres in.</mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Voornaam</mat-label>
+    <input matInput placeholder="Voornaam" required [(ngModel)]="model.firstName" name="firstName">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint>Geef je voornaam op.</mat-hint>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Familienaam</mat-label>
+    <input matInput placeholder="Familienaam" required [(ngModel)]="model.lastName" name="lastName">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint>Geef je familienaam op.</mat-hint>
+  </mat-form-field>
+</p>
+    <p>
+  <mat-form-field appearance="outline">
+    <mat-label>Wachtwoord</mat-label>
+    <input matInput placeholder="Wachtwoord" required [(ngModel)]="model.password" name="password" minlength="6">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint>Geef een wachtwoord op.</mat-hint>
+  </mat-form-field>
+</p>
+         <button type="submit" mat-raised-button color="warn">Registreer</button>
+  </form>
+</mat-card-content>
+</mat-card>
+</div>
+
+<mat-card  class="container" *ngIf="busy" >
+   <mat-card-header class="center">
+     <mat-card-title>Logging in...</mat-card-title>
+     
+
+   </mat-card-header>
+   <mat-card-content class="center" >
+     <mat-spinner></mat-spinner>
+     </mat-card-content>
+</mat-card>  

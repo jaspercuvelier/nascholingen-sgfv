@@ -1,0 +1,49 @@
+mat-card{
+
+  margin: 50px auto;
+  width:400px;
+
+}
+section {
+  display: flex;
+
+  width:100%;
+}
+mat-form-field{
+  width:100%;
+
+}
+.fullwidth{
+  width:100%
+}
+
+input{
+  width:500px;
+}
+
+
+.margin {
+  margin: 0 10px;
+}
+
+.button-row{
+  display:flex;
+  flex-wrap:wrap;
+  width:100%;
+ 
+  align-content:stretch;
+}
+.button-row a{margin:4px;}
+.h2{
+  width:100%;
+}
+
+
+
+.right{
+      justify-content:flex-end;
+}
+
+.addtagform{
+width:100%
+}

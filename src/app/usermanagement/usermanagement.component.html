@@ -1,0 +1,39 @@
+<div class="container">
+<mat-card *ngIf="!admin">
+  Je moet administrator zijn om deze pagina te bekijken.
+</mat-card>  
+<table *ngIf="admin" mat-table  [dataSource]="items"  class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- NAAM Column -->
+  <ng-container matColumnDef="naam">
+    <th mat-header-cell *matHeaderCellDef> NAAM </th>
+    <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+  </ng-container>
+
+    <!-- LESGEVER Column -->
+  <ng-container matColumnDef="lesgever">
+    <th mat-header-cell *matHeaderCellDef > LESGEVER </th>
+    <td mat-cell *matCellDef="let user"> {{user.nascholer}} </td>
+  </ng-container>
+
+    <!-- LESGEVER Column -->
+  <ng-container matColumnDef="activeer">
+    <th mat-header-cell *matHeaderCellDef > ACTIVEER </th>
+    <td mat-cell *matCellDef="let lesgever" > 
+      
+    
+            <mat-slide-toggle [checked]="lesgever.nascholer" (change)="toggleGebruiker(lesgever.uid,lesgever.nascholer)">
+              <div *ngIf="!lesgever.nascholer" ><mat-icon >block</mat-icon></div>
+              <div *ngIf="lesgever.nascholer" ><mat-icon >check</mat-icon></div>
+            </mat-slide-toggle>
+     
+     
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>

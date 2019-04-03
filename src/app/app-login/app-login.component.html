@@ -1,0 +1,67 @@
+<div class="container">
+
+<mat-card class="example-card" *ngIf="!uid && !busy">
+   <mat-card-header class="center">
+     <mat-card-title>Login</mat-card-title>
+   </mat-card-header>
+   <mat-card-content>
+     <form class="" #loginForm="ngForm" (ngSubmit)="login()">
+       <table class="full-width" cellspacing="0">
+         <tr>
+           <td>
+             <mat-form-field class="full-width">
+             <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+             </mat-form-field>
+           </td>
+         </tr>
+         <tr>
+         <td><mat-form-field class="full-width">
+           <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+         </mat-form-field></td>
+       </tr></table>
+            
+        
+     <button type="submit" mat-raised-button color="primary">Login</button>
+      
+     
+     </form>
+    
+   </mat-card-content>
+   <mat-card-actions>
+    <mat-list>
+     <mat-divider></mat-divider>
+          <mat-list-item>
+     <a routerLink="../registreer" mat-raised-button>Registreer</a>
+          </mat-list-item>
+     <mat-list-item>
+     <button mat-raised-button (click)="loginWithGoogle()" color="warn">Login With Google</button>
+     </mat-list-item>
+     </mat-list>
+   </mat-card-actions>
+ </mat-card>
+
+
+<mat-card  layout-fill layout-align="center center" class="example-card" *ngIf="busy" >
+   <mat-card-header class="center">
+     <mat-card-title>Logging in...</mat-card-title>
+     
+
+   </mat-card-header>
+   <mat-card-content class="center" >
+     <mat-spinner></mat-spinner>
+     </mat-card-content>
+</mat-card>   
+ <mat-card *ngIf="uid">
+   <mat-card-header class="center"><mat-card-title>{{userobj.displayName}}</mat-card-title>
+   <mat-card-subtitle>{{userobj.email}}</mat-card-subtitle></mat-card-header>
+<mat-card-content>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions class="center">
+    
+    <button mat-raised-button color="warn" (click)="logout()">LOG OUT</button>
+
+  </mat-card-actions>
+
+ </mat-card>
+ </div>
