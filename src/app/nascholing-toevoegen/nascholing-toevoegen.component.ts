@@ -81,7 +81,7 @@ export class NascholingToevoegenComponent implements OnInit {
       }
       this.db.collection('nascholingen-tags').add({name:this.tagModel.tagName})
       this.selectedTags.push(this.tagModel.tagName)
-      console.log("added!")
+      console.log(this.tagModel.tagName +"added!")
       this.snackBar.open("Nieuwe tag toegevoegd!","X",{duration:6000});
     }
 
@@ -99,6 +99,8 @@ export class NascholingToevoegenComponent implements OnInit {
                                               location:this.formModel.location,
                                               teacher:this.formModel.teacher,
                                               numberParticipants: 0,
+                                              emailList:[],
+                                              listOfUsers:[],
                                               date:this.formModel.date})
       
       this.selectedTags = [];
