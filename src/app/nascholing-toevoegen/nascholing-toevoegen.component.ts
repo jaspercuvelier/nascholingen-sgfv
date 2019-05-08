@@ -86,6 +86,7 @@ export class NascholingToevoegenComponent implements OnInit {
     }
 
 
+
       addNewNascholing() {
       console.log(this.formModel)
       var tags = {};
@@ -93,6 +94,14 @@ export class NascholingToevoegenComponent implements OnInit {
         {
           tags[this.selectedTags[i]] = true;
         }
+        var d = new Date(this.formModel.date)
+        var year = "" + d.getFullYear();
+        var month = "" + (d.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+        var day = "" + d.getDate(); if (day.length == 1) { day = "0" + day; }
+        var hour = "" + d.getHours(); if (hour.length == 1) { hour = "0" + hour; }
+        var minute = "" + d.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
+
+        var formatteddate = day + "-" + month + "-" + year + " " + hour + ":" + minute;
       this.db.collection('nascholingen').add({text:this.formModel.text,
                                               titel:this.formModel.title,
                                               tags:tags,
@@ -101,7 +110,7 @@ export class NascholingToevoegenComponent implements OnInit {
                                               numberParticipants: 0,
                                               emailList:[],
                                               listOfUsers:[],
-                                              date:this.formModel.date})
+                                              date:formatteddate})
       
       this.selectedTags = [];
       this.snackBar.open("Nascholing toegevoegd!","X",{duration:6000});
